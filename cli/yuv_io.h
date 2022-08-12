@@ -1,5 +1,3 @@
-#ifndef CLI_H_
-#define CLI_H_
 /*****************************************************************************
  * This file is part of Kvazaar HEVC encoder.
  *
@@ -32,45 +30,30 @@
  * INCLUDING NEGLIGENCE OR OTHERWISE ARISING IN ANY WAY OUT OF THE USE OF THIS
  ****************************************************************************/
 
-/**
+#ifndef YUV_IO_H_
+#define YUV_IO_H_
+
+/*
  * \file
- * Command line interface
+ * \brief Functions related to reading YUV input and output.
  */
 
-#include "global.h" // IWYU pragma: keep
+#include <stdio.h>
+
+// #include "global.h" // IWYU pragma: keep
 #include "kvazaar.h"
 
-typedef struct cmdline_opts_t {
-  /** \brief Input filename */
-  char *input;
-  /** \brief Output filename */
-  char *output;
-  /** \brief Debug output */
-  char *debug;
-  /** \brief Number of input frames to skip */
-  int32_t seek;
-  /** \brief Number of frames to encode */
-  int32_t frames;
-  /** \brief Encoder configuration */
-  kvz_config *config;
-  /** \brief Show help message and exit */
-  bool help;
-  /** \brief Show version information and exit */
-  bool version;
-  /** \brief Whether to loop input */
-  bool loop_input;
-} cmdline_opts_t;
+int yuv_io_read(FILE* file,
+                unsigned input_width, unsigned input_height,
+                unsigned from_bitdepth, unsigned to_bitdepth,
+                kvz_picture *img_out, unsigned file_format);
 
-cmdline_opts_t* cmdline_opts_parse(const kvz_api *api, int argc, char *argv[]);
-void cmdline_opts_free(const kvz_api *api, cmdline_opts_t *opts);
+int yuv_io_seek(FILE* file, unsigned frames,
+                unsigned input_width, unsigned input_height,
+                unsigned file_format);
 
-void print_usage(void);
-void print_version(void);
-void print_help(void);
-void print_frame_info(const kvz_frame_info *const info,
-                      const double frame_psnr[3],
-                      const uint32_t bytes,
-                      const bool print_psnr,
-                      const double avg_qp);
+int yuv_io_write(FILE* file,
+                const kvz_picture *img,
+                unsigned output_width, unsigned output_height);
 
-#endif
+#endif // YUV_IO_H_

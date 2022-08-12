@@ -50,7 +50,8 @@ Makefile.in
 *.log
 .kdev4
 configure.scan
-src/kvazaar
+cli/kvazaar
+cli/version.h
 src/libkvazaar.so.*
 src/kvazaar.pc
 tests/kvazaar_tests

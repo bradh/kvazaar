@@ -1,11 +1,8 @@
-bin_PROGRAMS = kvazaar
 lib_LTLIBRARIES = libkvazaar.la
-
 
 EXTRA_DIST = \
 	extras/getopt.c \
 	extras/getopt.h
-
 
 pkgconfigdir = $(libdir)/pkgconfig
 nodist_pkgconfig_DATA = kvazaar.pc
@@ -22,27 +19,6 @@ noinst_LTLIBRARIES = \
 	libavx2.la \
 	libsse2.la \
 	libsse41.la
-
-kvazaar_SOURCES = \
-	encmain.c \
-	cli.h \
-	cli.c \
-	yuv_io.c \
-	yuv_io.h
-
-kvazaar_LDADD = libkvazaar.la $(LIBS)
-
-kvazaar_CPPFLAGS = -DKVZ_VERSION="`$(srcdir)/../tools/version.sh`"
-
-if USE_CRYPTOPP
-kvazaar_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-else
-kvazaar_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-endif
 
 libkvazaar_la_SOURCES = \
 	bitstream.c \

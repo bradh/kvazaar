@@ -34,10 +34,16 @@
  * \file
  */
 
+#include <assert.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
 
 #include "yuv_io.h"
+
+#include "cli_utils.h"
+
+
 
 static void fill_after_frame(unsigned height, unsigned array_width,
                              unsigned array_height, kvz_pixel *data)

@@ -1,7 +1,9 @@
+#ifndef CLI_UTILS_H_
+#define CLI_UTILS_H_
 /*****************************************************************************
  * This file is part of Kvazaar HEVC encoder.
  *
- * Copyright (c) 2021, Tampere University, ITU/ISO/IEC, project contributors
+ * Copyright (c) 2022, Tampere University, ITU/ISO/IEC, project contributors
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,30 +32,8 @@
  * INCLUDING NEGLIGENCE OR OTHERWISE ARISING IN ANY WAY OUT OF THE USE OF THIS
  ****************************************************************************/
 
-#ifndef YUV_IO_H_
-#define YUV_IO_H_
+#define FREE_POINTER(pointer) { free((void*)pointer); pointer = NULL; }
+#define MAX(a,b) (((a)>(b))?(a):(b))
+#define MIN(a,b) (((a)<(b))?(a):(b))
 
-/*
- * \file
- * \brief Functions related to reading YUV input and output.
- */
-
-#include <stdio.h>
-
-#include "global.h" // IWYU pragma: keep
-#include "kvazaar.h"
-
-int yuv_io_read(FILE* file,
-                unsigned input_width, unsigned input_height,
-                unsigned from_bitdepth, unsigned to_bitdepth,
-                kvz_picture *img_out, unsigned file_format);
-
-int yuv_io_seek(FILE* file, unsigned frames,
-                unsigned input_width, unsigned input_height,
-                unsigned file_format);
-
-int yuv_io_write(FILE* file,
-                const kvz_picture *img,
-                unsigned output_width, unsigned output_height);
-
-#endif // YUV_IO_H_
+#endif

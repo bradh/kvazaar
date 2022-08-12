@@ -40,12 +40,11 @@
 #define WINVER       0x0500
 #define _WIN32_WINNT 0x0500
 
-#include "global.h" // IWYU pragma: keep
-
 #include <fcntl.h>    /* _O_BINARY */
 #include <io.h>       /* _setmode() */
 #endif
 
+#include <assert.h>
 #include <math.h>
 #include <pthread.h>
 #include <stdio.h>
@@ -53,13 +52,17 @@
 #include <string.h>
 #include <time.h> // IWYU pragma: keep for CLOCKS_PER_SEC
 
-#include "checkpoint.h"
 #include "cli.h"
-#include "encoder.h"
+#include "cli_utils.h"
 #include "kvazaar.h"
-#include "kvazaar_internal.h"
-#include "threads.h"
+#include "version.h"
 #include "yuv_io.h"
+
+// TODO: these need to go.
+#include "../src/checkpoint.h"
+#include "../src/encoder.h"
+#include "../src/kvazaar_internal.h"
+#include "../src/threads.h"
 
 /**
  * \brief Open a file for reading.

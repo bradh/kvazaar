@@ -1,6 +1,6 @@
 
 AC_INIT([kvazaar], m4_esyscmd([printf $(awk '/#define KVZ_VERSION/ { print $3 }' src/global.h)]))
-AC_CONFIG_SRCDIR([src/encmain.c])
+AC_CONFIG_SRCDIR([src/kvazaar.c])
 
 # Library version number, modify:
 # - When modifying kvazaar.h.
@@ -193,5 +193,7 @@ AC_SUBST([KVZ_API_VERSION])
 AC_CONFIG_FILES([Makefile
                  src/Makefile
                  src/kvazaar.pc
+                 cli/Makefile
+                 cli/version.h
                  tests/Makefile])
 AC_OUTPUT

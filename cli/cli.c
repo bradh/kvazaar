@@ -43,6 +43,11 @@
 #include <getopt.h>
 #include <ctype.h>
 
+#include "cli_utils.h"
+#include "version.h"
+
+
+
 static const char short_options[] = "i:o:d:w:h:n:q:p:r:";
 static const struct option long_options[] = {
   { "input",              required_argument, NULL, 'i' },

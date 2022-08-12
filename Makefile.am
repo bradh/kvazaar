@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = src tests
+SUBDIRS = src cli tests
 
 dist_man1_MANS = doc/kvazaar.1
 
